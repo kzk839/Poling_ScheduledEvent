@@ -21,8 +21,17 @@ def get_scheduled_events():
 
 def create_result_file():
     data = get_scheduled_events()
-    filename = str(get_now())+".json"
-    path = basepath + filename
+    now_time = get_now()
+    filename = str(now_time)+".json"
+
+    year = now_time[0:4]
+    month = now_time[4:6]
+    day = now_time[6:8]
+    hour = now_time[9:11]
+    minutes = now_time[11:13]
+    datepath = year + '/' + month + '/' + day + '/' + hour + '/' + minutes + '/'
+
+    path = basepath + datepath + filename
     with open(path, 'w') as file:
         json.dump(data, file, indent=4)
 
