@@ -4,6 +4,7 @@ import requests
 import datetime
 import time
 import threading
+import os
 
 metadata_url ="http://169.254.169.254/metadata/scheduledevents"
 header = {'Metadata' : 'true'}
@@ -32,6 +33,7 @@ def create_result_file():
     datepath = year + '/' + month + '/' + day + '/' + hour + '/' + minutes + '/'
 
     path = basepath + datepath + filename
+    os.makedirs(basepath + datepath, exist_ok=True)
     with open(path, 'w') as file:
         json.dump(data, file, indent=4)
 
